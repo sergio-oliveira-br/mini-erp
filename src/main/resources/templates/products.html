@@ -46,33 +46,33 @@
     <main class="container mt-3">
 
         <form>
-            <div class="row">
-                <div class="col col-12 mb-3">
+            <div class="row g-3">
+                <div class="col-12 col-md-4 mb-3">
                     <label for="product-description" class="form-label">Product</label>
                     <input th:type="text" class="form-control" id="product-description" placeholder="Description">
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col col-4 mb-3">
-                        <label for="product-cost-price" class="form-label">Cost Price</label>
-                        <input th:type="numbers" class="form-control" id="product-cost-price" placeholder="#.##">
-                    </div>
-
-                    <div class="col col-4 mb-3">
-                        <label for="product-selling-price" class="form-label">Selling Price</label>
-                        <input th:type="numbers" class="form-control" id="product-selling-price" placeholder="#.##">
-                    </div>
-
-
-                    <div class="col col-4 mb-3">
-                        <label for="product-qty-available" class="form-label">Quantity Purchased</label>
-                        <input th:type="numbers" class="form-control" id="product-qty-available" placeholder="#">
-                    </div>
+            <div class="row">
+                <div class="col-12 col-md-4 mb-3">
+                    <label for="product-cost-price" class="form-label">Cost Price</label>
+                    <input type="number" class="form-control" id="product-cost-price" placeholder="#.##">
                 </div>
 
-                <div class="mt-auto d-flex justify-content-end">
-                    <button class="col col-2 btn btn-dark">Create</button>
+                <div class="col-12 col-md-4 mb-3">
+                    <label for="product-selling-price" class="form-label">Selling Price</label>
+                    <input type="number" class="form-control" id="product-selling-price" placeholder="#.##">
                 </div>
+
+
+                <div class="col-12 col-md-4 mb-3">
+                    <label for="product-qty-available" class="form-label">Quantity Purchased</label>
+                    <input type="number" class="form-control" id="product-qty-available" placeholder="#">
+                </div>
+            </div>
+
+            <div class="col-12 d-flex justify-content-end">
+                <button class="btn btn-dark">Create</button>
             </div>
         </form>
 
