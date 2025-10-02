@@ -1,0 +1,12 @@
+schema-version: v1
+rulesets:
+#   Ensures that your Java code follows performance and readability standards
+# (e.g.: correct use of loops, resource handling).
+  - java-best-practices
+
+#   Ensures the consistency of your code (indentation, variable names).
+  - java-code-style
+
+#   Search for common security vulnerabilities in Java/Spring
+# (ex: SQL injection, authentication failures, insecure use of APIs).
+  - java-security
