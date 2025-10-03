@@ -20,7 +20,7 @@ RUN mvn clean package -DskipTests
 # RUNTIME PHASE
 # --------------------------------------------------------------------------------
 # Lighter and safer base image
-FROM openjdk:17-jre-slim
+FROM openjdk:17-jdk-slim
 
 USER nonroot
 
