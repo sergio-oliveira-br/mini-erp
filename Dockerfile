@@ -1,5 +1,3 @@
-LABEL authors="sergiovinicio"
-
 # --------------------------------------------------------------------------------
 # BUILD PHASE
 # --------------------------------------------------------------------------------
@@ -22,7 +20,7 @@ RUN mvn clean package -DskipTests
 # Lighter and safer base image
 FROM openjdk:17-jdk-slim
 
-USER nonroot
+#USER nonroot
 
 # Sets the working directory
 WORKDIR /app
