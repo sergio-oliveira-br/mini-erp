@@ -8,3 +8,6 @@ rulesets:
   #   Search for common security vulnerabilities in Java/Spring
   # (ex: SQL injection, authentication failures, insecure use of APIs).
   - java-security
+
+
+  - docker-best-practices
