@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mini-erp
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Brasil2024
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: mini-erp
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: Brasil2024
+    ports:
+      - "5432:5432"
