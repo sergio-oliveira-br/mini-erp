@@ -14,6 +14,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mini-erp
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: Brasil2024
+
+      # Application Performance Monitoring (APM) variables
+      DD_AGENT_HOST: datadog
+      DD_SERVICE_NAME: Mini-ERP
+      DD_ENV: local
   db:
     image: postgres:latest
     environment:
@@ -27,6 +32,7 @@ services:
     image: gcr.io/datadoghq/agent:7
     container_name: datadog-agent
     environment:
+      DD_AGENT_HOST: ${DD_AGENT_HOST}
       DD_API_KEY: ${DD_API_KEY}
       DD_SITE: datadoghq.eu
 
