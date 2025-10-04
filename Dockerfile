@@ -25,6 +25,9 @@ FROM openjdk:17-jdk-slim
 # Sets the working directory
 WORKDIR /app
 
+# Inserting the Agent into the Container
+ADD https://dtdg.co/latest-java-tracer /app/dd-java-agent.jar
+
 # Copies the compiled JAR from the BUILD PHASE
 COPY --from=build /app/target/*.jar app.jar
 
@@ -33,4 +36,5 @@ ENV PORT 8080
 EXPOSE 8080
 
 # Sets the execution command
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+#ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+ENTRYPOINT ["java", "-javaagent:/app/dd-java-agent.jar", "-jar", "/app/app.jar"]
