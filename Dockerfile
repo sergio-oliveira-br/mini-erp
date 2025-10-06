@@ -18,7 +18,7 @@ RUN mvn clean package -DskipTests
 # RUNTIME PHASE
 # --------------------------------------------------------------------------------
 # Lighter and safer base image
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jre-focal
 
 #USER nonroot
 
