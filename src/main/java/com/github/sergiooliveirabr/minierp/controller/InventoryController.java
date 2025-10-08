@@ -23,6 +23,10 @@ public class InventoryController {
 
         // Adds the empty Item object to the CREATE form (th:object="${item}")
         model.addAttribute("item", new Item());
+
+
+        model.addAttribute("items", itemService.findAll());
+
         return "inventory";
     }
 
@@ -31,4 +35,6 @@ public class InventoryController {
         itemService.save(item);
         return "redirect:/inventory";
     }
+
+
 }
