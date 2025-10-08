@@ -52,7 +52,7 @@
 
                 <div class="form-group col-12 col-md-6 mb-3">
                     <label for="quantity" class="form-label">Quantity Available</label>
-                    <input type="number" class="form-control" id="quantity" placeholder="#">
+                    <input th:field="*{quantity}" type="number" class="form-control" id="quantity" placeholder="#">
                 </div>
             </div>
 
@@ -77,7 +77,15 @@
             </thead>
 
             <tbody>
-
+                <tr th:each="item : ${items}">
+                    <th th:text="${item.id}"></th>
+                    <th th:text="${item.description}"></th>
+                    <th th:text="${item.price}"></th>
+                    <th th:text="${item.quantity}"></th>
+                    <th th:text="${item.created}"></th>
+                    <th th:text="${item.updated}"></th>
+                    <th><button class="btn btn-secondary">Edit</button></th>
+                </tr>
             </tbody>
         </table>
     </main>
