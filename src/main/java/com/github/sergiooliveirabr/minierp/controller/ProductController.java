@@ -10,6 +10,6 @@ public class ProductController {
 
     @GetMapping
     public String productView() {
-        return "products";
+        return "inventory";
     }
 }
