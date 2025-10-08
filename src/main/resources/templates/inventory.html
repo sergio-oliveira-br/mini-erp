@@ -36,28 +36,28 @@
 
     <main class="container mt-3">
 
-        <form>
+        <form th:action="@{/inventory/insert}" th:object="${item}" method="post">
             <div class="row g-3">
-                <div class="col-12 col-md-12 mb-3">
-                    <label for="product-description" class="form-label">Product</label>
-                    <input th:type="text" class="form-control" id="product-description" placeholder="Description">
+                <div class="form-group col-12 col-md-12 mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <input th:field="*{description}" type="text" class="form-control" id="description">
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-12 col-md-6 mb-3">
-                    <label for="product-cost-price" class="form-label">Price</label>
-                    <input type="number" class="form-control" id="product-cost-price" placeholder="#.##">
+                <div class="form-group col-12 col-md-6 mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input th:field="*{price}" type="number" class="form-control" id="price" step="0.01" placeholder="#.##">
                 </div>
 
-                <div class="col-12 col-md-6 mb-3">
-                    <label for="product-qty-available" class="form-label">Quantity Available</label>
-                    <input type="number" class="form-control" id="product-qty-available" placeholder="#">
+                <div class="form-group col-12 col-md-6 mb-3">
+                    <label for="quantity" class="form-label">Quantity Available</label>
+                    <input type="number" class="form-control" id="quantity" placeholder="#">
                 </div>
             </div>
 
             <div class="col-12 d-flex justify-content-end">
-                <button class="btn btn-dark">Create</button>
+                <button type="submit" class="btn btn-dark">Create</button>
             </div>
         </form>
 
