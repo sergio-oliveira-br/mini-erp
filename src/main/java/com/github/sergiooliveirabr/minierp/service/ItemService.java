@@ -3,6 +3,7 @@ package com.github.sergiooliveirabr.minierp.service;
 import com.github.sergiooliveirabr.minierp.entity.Item;
 import com.github.sergiooliveirabr.minierp.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,10 @@ public class ItemService {
     }
 
     public Item save(Item item) {
+
+        if (item.getDescription() == null || item.getPrice() == null || item.getQuantity() == null ) {
+            throw new IllegalArgumentException("Description, Price or Quantity cannot be null");
+        }
         return itemRepository.save(item);
     }
 
