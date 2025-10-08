@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/products")
-public class ProductController {
+@RequestMapping("/inventory")
+public class InventoryController {
 
     @GetMapping
-    public String productView() {
+    public String inventoryView() {
         return "inventory";
     }
 }
