@@ -21,7 +21,7 @@ public class ItemService {
     public Item save(Item item) {
 
         if (item.getDescription() == null || item.getPrice() == null || item.getQuantity() == null ) {
-            throw new IllegalArgumentException("Description, Price or Quantity cannot be null");
+            throw new IllegalArgumentException("All fields are required");
         }
         return itemRepository.save(item);
     }
