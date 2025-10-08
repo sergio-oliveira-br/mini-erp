@@ -10,6 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -49,5 +50,19 @@ public class ItemServiceTest {
 
         assertNotNull(savedItem.getCreated(), "The 'created' should not be null after saving.");
         assertNotNull(savedItem.getUpdated(), "The 'updated' should not be null after saving.");
+    }
+
+    @Test
+    void shoudlFindAllItems() {
+
+        // ARRANGE: Save the item 2x
+        itemService.save(createanValidItem());
+        itemService.save(createanValidItem());
+
+        // Action: invoke the method that I'm testing
+        List<Item> items = itemService.findAll();
+
+        // ASSERT
+        assertEquals(2, items.size(), "The list should contain exactly two items.");
     }
 }
