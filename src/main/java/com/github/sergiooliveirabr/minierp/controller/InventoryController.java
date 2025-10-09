@@ -36,5 +36,16 @@ public class InventoryController {
         return "redirect:/inventory";
     }
 
+    @GetMapping("/{id}")
+    public String retrieveItemById(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+
+        Item itemFoundById = itemService.findById(id);
+
+        redirectAttributes.addFlashAttribute("itemFoundById", itemFoundById);
+        redirectAttributes.addFlashAttribute("openEditModal", true);
+
+        return "redirect:/inventory";
+    }
+
 
 }
