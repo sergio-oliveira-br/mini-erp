@@ -36,4 +36,11 @@ public class ItemService {
         }
         return itemRepository.findById(id).orElse(null);
     }
+
+    public void delete(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("Id is required");
+        }
+        itemRepository.deleteById(id);
+    }
 }
