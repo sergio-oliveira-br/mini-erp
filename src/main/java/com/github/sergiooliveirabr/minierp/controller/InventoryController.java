@@ -23,10 +23,17 @@ public class InventoryController {
     public String inventoryView(Model model) {
 
         // Adds the empty Item object to the CREATE form (th:object="${item}")
-        model.addAttribute("item", new Item());
+        if (!model.containsAttribute("itemFoundById")) {
+            model.addAttribute("item", new Item());
+        }
+        else {
+            Item itemFound = (Item) model.getAttribute("itemFoundById");
+            model.addAttribute("item", itemFound);
+        }
 
         // Fillup the table
         model.addAttribute("items", itemService.findAll());
+
         return "inventory";
     }
 
