@@ -31,6 +31,9 @@ public class ItemService {
     }
 
     public Item findById(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("Id is required");
+        }
         return itemRepository.findById(id).orElse(null);
     }
 }
