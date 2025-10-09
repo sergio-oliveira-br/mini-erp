@@ -78,4 +78,18 @@ public class ItemServiceTest {
         // ASSERT
         assertNotNull(item, "The item should not be null, OR is out of bounds");
     }
+
+    @Test
+    void shouldDeleteItemById() {
+
+        // ARRANGE
+        itemService.save(createanValidItem());
+        itemRepository.count();
+
+        // ACT
+        itemService.delete(1L);
+
+        // ASSERT
+        assertEquals(0, itemRepository.count(), "The item should have been deleted.");
+    }
 }
