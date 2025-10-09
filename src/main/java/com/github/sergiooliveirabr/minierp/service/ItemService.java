@@ -29,4 +29,8 @@ public class ItemService {
     public List<Item> findAll() {
         return itemRepository.findAll();
     }
+
+    public Item findById(Long id) {
+        return itemRepository.findById(id).orElse(null);
+    }
 }
