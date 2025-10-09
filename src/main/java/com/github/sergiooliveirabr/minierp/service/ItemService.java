@@ -3,7 +3,6 @@ package com.github.sergiooliveirabr.minierp.service;
 import com.github.sergiooliveirabr.minierp.entity.Item;
 import com.github.sergiooliveirabr.minierp.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
