@@ -65,4 +65,17 @@ public class ItemServiceTest {
         // ASSERT
         assertEquals(2, items.size(), "The list should contain exactly two items.");
     }
+
+    @Test
+    void shouldFindItemById() {
+
+        // ARRANGE
+        itemService.save(createanValidItem());
+
+        // ACT
+        Item item = itemService.findById(1L);
+
+        // ASSERT
+        assertNotNull(item, "The item should not be null, OR is out of bounds");
+    }
 }
