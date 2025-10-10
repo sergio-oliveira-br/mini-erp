@@ -104,8 +104,8 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 class="modal-title">Edit Product</h5>
+                            <a th:href="@{/inventory}" class="btn-close" aria-label="Close"></a>
                         </div>
                         <div class="modal-body">
                             <form id="editForm" method="post" th:object="${item}">
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-danger">Delete</button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <a th:href="@{/inventory}" class="btn btn-secondary">Cancel</a>
                                     <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
                             </form>
