@@ -54,5 +54,17 @@ public class InventoryController {
         return "redirect:/inventory";
     }
 
+    @PostMapping("/delete/{id}")
+    public String deleteItemById(@PathVariable Long id, RedirectAttributes redirectAttributes) {
 
+        System.out.println("Product Id: " + id);
+
+        Item itemFoundById = itemService.findById(id);
+
+        if(itemFoundById != null ) {
+            itemService.delete(id);
+            System.out.println("The product should be deleted");
+        }
+        return "redirect:/inventory";
+    }
 }
