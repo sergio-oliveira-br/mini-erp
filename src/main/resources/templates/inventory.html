@@ -130,10 +130,10 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="submit" class="col-12 btn btn-primary">Save changes</button>
+                                    <a th:href="@{'/inventory/confirm-delete/' + ${item.id}}" class="btn btn-danger">Delete</a>
+                                    <button type="submit" class="col-6 btn btn-dark">Save changes</button>
                                 </div>
                             </form>
-                            <a th:href="@{'/inventory/confirm-delete/' + ${item.id}}" class="d-grid gap-2 col-3 mx-auto btn btn-danger">Delete</a>
                         </div>
                     </div>
                 </div>
