@@ -57,6 +57,10 @@ public class InventoryController {
     @GetMapping("/confirm-delete/{id}")
     public String showDeleteConfirmation(@PathVariable Long id, RedirectAttributes redirectAttributes) {
 
+        if(id == null){
+            redirectAttributes.addFlashAttribute("message", "Item not found");
+            return "redirect:/inventory";
+        }
         Item itemFoundById = itemService.findById(id);
 
         redirectAttributes.addFlashAttribute("itemFoundById", itemFoundById);
