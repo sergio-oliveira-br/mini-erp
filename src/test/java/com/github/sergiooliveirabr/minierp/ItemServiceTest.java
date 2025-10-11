@@ -69,13 +69,14 @@ public class ItemServiceTest {
     void shouldFindItemById() {
 
         // ARRANGE
-        itemService.save(createanValidItem());
+        Item savedItem = itemService.save(createanValidItem());
+        Long captureId = savedItem.getId();
 
         // ACT
-        Item item = itemService.findById(1L);
+        Item foundItem = itemService.findById(captureId);
 
         // ASSERT
-        assertNotNull(item, "The item should not be null, OR is out of bounds");
+        assertNotNull(foundItem, "The item should not be null");
     }
 
     @Test
