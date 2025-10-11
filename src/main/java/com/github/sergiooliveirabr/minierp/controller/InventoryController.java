@@ -54,17 +54,17 @@ public class InventoryController {
         return "redirect:/inventory";
     }
 
-    @PostMapping("/delete/{id}")
-    public String deleteItemById(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-
-        System.out.println("Product Id: " + id);
+    @GetMapping("/confirm-delete/{id}")
+    public String showDeleteConfirmation(@PathVariable Long id, RedirectAttributes redirectAttributes) {
 
         Item itemFoundById = itemService.findById(id);
 
-        if(itemFoundById != null ) {
-            itemService.delete(id);
-            System.out.println("The product should be deleted");
-        }
+        redirectAttributes.addFlashAttribute("itemFoundById", itemFoundById);
+        redirectAttributes.addFlashAttribute("openDeleteModal", true);
+
+        return "redirect:/inventory";
+    }
+
         return "redirect:/inventory";
     }
 }
