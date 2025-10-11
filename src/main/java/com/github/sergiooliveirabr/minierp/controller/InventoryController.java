@@ -78,4 +78,12 @@ public class InventoryController {
         redirectAttributes.addFlashAttribute("message", "Item successfully deleted!");
         return "redirect:/inventory";
     }
+
+    @PostMapping("/update/{id}")
+    public String updateItemById(Item itemToUpdate, RedirectAttributes redirectAttributes) {
+        itemService.updatedItem(itemToUpdate);
+        redirectAttributes.addFlashAttribute("message",
+                 itemToUpdate.getDescription() + " successfully updated!");
+        return "redirect:/inventory";
+    }
 }
