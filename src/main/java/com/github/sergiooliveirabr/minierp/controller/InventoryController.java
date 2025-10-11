@@ -34,6 +34,9 @@ public class InventoryController {
         // Fillup the table
         model.addAttribute("items", itemService.findAll());
 
+        //Output messages
+        model.addAttribute("message");
+
         return "inventory";
     }
 
