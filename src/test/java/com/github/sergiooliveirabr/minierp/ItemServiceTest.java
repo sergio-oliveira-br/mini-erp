@@ -12,8 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ActiveProfiles
@@ -91,5 +90,20 @@ public class ItemServiceTest {
 
         // ASSERT
         assertEquals(0, itemRepository.count(), "The item should have been deleted.");
+    }
+
+    @Test
+    void shouldUpdateItemById() {
+
+        // ARRANGE
+        Item itemToSave = createanValidItem();
+        Item savedItem = itemService.save(itemToSave);
+
+        // ACT
+        savedItem.setDescription("My Item Test Updated");
+        Item itemUpdated = itemService.save(savedItem);
+
+        // ASSERT
+        assertEquals("My Item Test Updated", itemUpdated.getDescription());
     }
 }
