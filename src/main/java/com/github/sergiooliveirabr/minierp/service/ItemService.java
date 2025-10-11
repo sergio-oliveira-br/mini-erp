@@ -4,6 +4,7 @@ import com.github.sergiooliveirabr.minierp.entity.Item;
 import com.github.sergiooliveirabr.minierp.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -41,5 +42,18 @@ public class ItemService {
             throw new IllegalArgumentException("Id is required");
         }
         itemRepository.deleteById(id);
+    }
+
+    @Transactional
+    public Item updatedItem(Item itemToUpdate) {
+
+        Item originalItem = itemRepository.findById(itemToUpdate.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Item not found"));
+
+        originalItem.setDescription(itemToUpdate.getDescription());
+        originalItem.setPrice(itemToUpdate.getPrice());
+        originalItem.setQuantity(itemToUpdate.getQuantity());
+
+        return itemRepository.save(originalItem);
     }
 }
