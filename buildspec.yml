@@ -34,7 +34,7 @@ phases:
       - docker build -t $ECR_REPO_URI:latest -t $ECR_REPO_URI:$IMAGE_TAG .
 
   # -----------------------------------------------------
-  # 4. AFTER BUILD - vulnerability scanner
+  # 4. POST-BUILD - vulnerability scanner
   # -----------------------------------------------------
   post_build:
     commands:
@@ -45,6 +45,12 @@ phases:
       - docker push $ECR_REPO_URI:latest
       - docker push $ECR_REPO_URI:$IMAGE_TAG
 
+      # this will create the imagedefinition.json
+      - echo Writing image definitions file with commit tag: $IMAGE_TAG
+      - printf '[{"name":"mini-erp","imageUri":"%s"}]' $ECR_REPO_URI:$IMAGE_TAG > imagedefinitions.json
+
+
 artifacts:
   files:
+    - 'imagedefinitions.json'
     - '**/*'
