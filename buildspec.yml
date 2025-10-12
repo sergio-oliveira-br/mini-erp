@@ -44,8 +44,6 @@ phases:
       - echo Pushing the Docker images...
       - docker push $ECR_REPO_URI:latest
       - docker push $ECR_REPO_URI:$IMAGE_TAG
-
-      # this will create the imagedefinition.json
       - echo Writing image definitions file with commit tag: $IMAGE_TAG
       - printf '[{"name":"mini-erp","imageUri":"%s"}]' $ECR_REPO_URI:$IMAGE_TAG > imagedefinitions.json
 
