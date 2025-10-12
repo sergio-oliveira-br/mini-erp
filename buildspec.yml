@@ -50,7 +50,7 @@ phases:
       - printf '[{"name":"mini-erp","imageUri":"%s"}]' $ECR_REPO_URI:$IMAGE_TAG > imagedefinitions.json
 
 
-artifacts:
-  files:
-    - 'imagedefinitions.json'
-    - '**/*'
+#artifacts:
+#  files:
+#    - 'imagedefinitions.json'
+#    - '**/*'
