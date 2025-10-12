@@ -29,7 +29,6 @@ phases:
     commands:
       - echo Running Maven clean install and executing all tests...
       - mvn clean install
-
       - echo Building the Docker image...
       - docker build -t $ECR_REPO_URI:latest -t $ECR_REPO_URI:$IMAGE_TAG .
 
@@ -47,8 +46,7 @@ phases:
       - echo Writing image definitions file with commit tag: $IMAGE_TAG
       - printf '[{"name":"mini-erp","imageUri":"%s"}]' $ECR_REPO_URI:$IMAGE_TAG > imagedefinitions.json
 
-
-#artifacts:
-#  files:
-#    - 'imagedefinitions.json'
-#    - '**/*'
+artifacts:
+  files:
+    - 'imagedefinitions.json'
+    - '**/*'
