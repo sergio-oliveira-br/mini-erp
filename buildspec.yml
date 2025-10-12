@@ -1,6 +1,6 @@
 version: 0.2
 # Environment variables we inject via Terraform
-# 905418423035.dkr.ecr.eu-west-1.amazonaws.com/mini-erp)
+# 905418423035.dkr.ecr.eu-west-1.amazonaws.com/mini-erp
 
 phases:
   # -----------------------------------------------------
@@ -37,9 +37,10 @@ phases:
   # -----------------------------------------------------
   post_build:
     commands:
-#      - echo Running security scan with Trivy...
-#      - trivy image --exit-code 1 --severity CRITICAL $ECR_REPO_URI:latest
-
+      # Security scan with Trivy (optional)
+      # To enable later, uncomment the two lines below:
+      # - echo Running security scan with Trivy...
+      # - trivy image --exit-code 1 --severity CRITICAL $ECR_REPO_URI:latest
       - echo Pushing the Docker images...
       - docker push $ECR_REPO_URI:latest
       - docker push $ECR_REPO_URI:$IMAGE_TAG
@@ -48,5 +49,4 @@ phases:
 
 artifacts:
   files:
-    - 'imagedefinitions.json'
-    - '**/*'
+    - imagedefinitions.json
