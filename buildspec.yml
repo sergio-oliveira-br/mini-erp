@@ -25,12 +25,9 @@ phases:
       - IMAGE_TAG=$CODEBUILD_RESOLVED_SOURCE_VERSION
 
       # Login Docker Hub via stdin
-      - echo Logging in to Docker Hub securely...
-
-      - DOCKER_HUB_USERNAME=$(aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:eu-west-1:905418423035:secret:docker-hub-credentials-D2hyQX --query SecretString --output text | jq -r '.username')
-      - DOCKER_HUB_PASSWORD=$(aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:eu-west-1:905418423035:secret:docker-hub-credentials-D2hyQX --query SecretString --output text | jq -r '.password')
-
-      - echo $DOCKER_HUB_PASSWORD | docker login --username $DOCKER_HUB_USERNAME --password-stdin
+      - SECRET_ARN=arn:aws:secretsmanager:eu-west-1:905418423035:secret:docker-hub-credentials-D2hyQX
+      - docker login --username $(aws secretsmanager get-secret-value --secret-id $SECRET_ARN --query SecretString --output text | jq -r '.username') --password-stdin <<< $(aws secretsmanager get-secret-value --secret-id $SECRET_ARN --query SecretString --output text | jq -r '.password')
+ 
 
   # -----------------------------------------------------
   # 3. BUILD
