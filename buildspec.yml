@@ -27,10 +27,10 @@ phases:
       # Login Docker Hub via stdin
       - echo Logging in to Docker Hub securely...
 
-      # JSON Secret
-      - DOCKER_HUB_SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:eu-west-1:905418423035:secret:docker-hub-credentials-D2hyQX --query SecretString --output text)
-      - echo $DOCKER_HUB_SECRET_JSON | jq -r '.password' | docker login --username $(echo $DOCKER_HUB_SECRET_JSON | jq -r '.username') --password-stdin
+      - DOCKER_HUB_USERNAME=$(aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:eu-west-1:905418423035:secret:docker-hub-credentials-D2hyQX --query SecretString --output text | jq -r '.username')
+      - DOCKER_HUB_PASSWORD=$(aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:eu-west-1:905418423035:secret:docker-hub-credentials-D2hyQX --query SecretString --output text | jq -r '.password')
 
+      - echo $DOCKER_HUB_PASSWORD | docker login --username $DOCKER_HUB_USERNAME --password-stdin
 
   # -----------------------------------------------------
   # 3. BUILD
