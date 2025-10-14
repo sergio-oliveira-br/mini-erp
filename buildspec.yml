@@ -12,6 +12,7 @@ phases:
     commands:
       - echo Installing Docker Login...
       - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+      - apt-get update && apt-get install -y jq
 
   # -----------------------------------------------------
   # 2. PRE-BUILD (Login and preparation)
