@@ -19,14 +19,21 @@ phases:
   # -----------------------------------------------------
   pre_build:
     commands:
+      # Login ECR
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REPO_URI
       - IMAGE_TAG=$CODEBUILD_RESOLVED_SOURCE_VERSION
 
-      #Login on Docker Hub via AWS CLI and Secrets Manager
-      - echo Logging in to Docker Hub...
-      - DOCKER_HUB_SECRET=$(aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:eu-west-1:905418423035:secret:docker-hub-credentials-D2hyQX --query SecretString --output text)
-      - docker login --username $(echo $DOCKER_HUB_SECRET | jq -r '.username') --password $(echo $DOCKER_HUB_SECRET | jq -r '.password')
+      # Login Docker Hub via stdin
+      - echo Logging in to Docker Hub securely...
+
+      # JSON Secret
+      - DOCKER_HUB_SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:eu-west-1:905418423035:secret:docker-hub-credentials-D2hyQX --query SecretString --output text)
+
+      - DOCKER_HUB_PASSWORD=$(echo $DOCKER_HUB_SECRET_JSON | jq -r '.password')
+      - DOCKER_HUB_USERNAME=$(echo $DOCKER_HUB_SECRET_JSON | jq -r '.username')
+
+      - echo $DOCKER_HUB_PASSWORD | docker login --username $DOCKER_HUB_USERNAME --password-stdin
 
 
   # -----------------------------------------------------
