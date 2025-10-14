@@ -24,15 +24,10 @@ phases:
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REPO_URI
       - IMAGE_TAG=$CODEBUILD_RESOLVED_SOURCE_VERSION
 
-      # Login Docker Hub via stdin
-      - echo Logging in to Docker Hub securely...
+      # Login Docker Hub by variables
+      - echo Logging in to Docker Hub securely..
+      - echo "$DOCKER_PAT" | docker login --username "$DOCKER_USER" --password-stdin
 
-      - SECRET_ARN=arn:aws:secretsmanager:eu-west-1:905418423035:secret:docker-hub-credentials-D2hyQX
-      - DOCKER_HUB_PASSWORD=$(aws secretsmanager get-secret-value --secret-id $SECRET_ARN --query SecretString --output text | jq -r '.password')
-      - DOCKER_HUB_USERNAME=$(aws secretsmanager get-secret-value --secret-id $SECRET_ARN --query SecretString --output text | jq -r '.username')
-
-      # 3. Executa o login usando o echo | pipe, que é mais compatível com o shell do CodeBuild
-      - echo "$DOCKER_HUB_PASSWORD" | docker login --username "$DOCKER_HUB_USERNAME" --password-stdin
 
   # -----------------------------------------------------
   # 3. BUILD
