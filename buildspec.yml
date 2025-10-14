@@ -29,8 +29,7 @@ phases:
 
       # JSON Secret
       - DOCKER_HUB_SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:eu-west-1:905418423035:secret:docker-hub-credentials-D2hyQX --query SecretString --output text)
-
-      - echo $DOCKER_HUB_SECRET | jq -r '.password' | docker login --username $(echo $DOCKER_HUB_SECRET | jq -r '.username') --password-stdin
+      - echo $DOCKER_HUB_SECRET_JSON | jq -r '.password' | docker login --username $(echo $DOCKER_HUB_SECRET_JSON | jq -r '.username') --password-stdin
 
 
   # -----------------------------------------------------
