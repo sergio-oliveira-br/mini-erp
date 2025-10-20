@@ -24,9 +24,16 @@ phases:
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REPO_URI
       - IMAGE_TAG=$CODEBUILD_RESOLVED_SOURCE_VERSION
 
-      # Login Docker Hub by variables
-      - echo Logging in to Docker Hub securely..
-      - echo "$DOCKER_PAT" | docker login --username "$DOCKER_USER" --password-stdin
+#      # Login Docker Hub by variables
+#      - echo Logging in to Docker Hub securely..
+#      - echo "$DOCKER_PAT" | docker login --username "$DOCKER_USER" --password-stdin
+
+      # Login Docker Hub using Secrets Manager
+      - echo "Logging in to Docker Hub securely..."
+      - export DOCKER_CREDS=$(aws secretsmanager get-secret-value --secret-id dockerhub-secret-name --query SecretString --output text)
+      - export DOCKER_USER=$(echo $DOCKER_CREDS | jq -r '.username')
+      - export DOCKER_PAT=$(echo $DOCKER_CREDS | jq -r '.password')
+      - echo $DOCKER_PAT | docker login --username $DOCKER_USER --password-stdin
 
 
   # -----------------------------------------------------
