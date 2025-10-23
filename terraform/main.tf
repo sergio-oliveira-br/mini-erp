@@ -258,18 +258,33 @@ resource "aws_ecs_task_definition" "app" {
         }
       ],
       environment = [
-        # Opcional: Adicione a variável de ambiente para o perfil Spring Boot
         {
           name  = "SPRING_PROFILES_ACTIVE"
           value = "prod"
+        },
+        {
+          "name": "SPRING_DATASOURCE_URL",
+          "value": "jdbc:postgresql://minierp-postgres-db.cdo6c2kyu0bn.eu-west-1.rds.amazonaws.com:5432/minierp"
+        },
+      ],
+      secrets: [
+        {
+          "name": "SPRING_DATASOURCE_USERNAME",
+          "valueFrom": "arn:aws:secretsmanager:eu-west-1:905418423035:secret:rds!db-669d0f56-8d1d-43ff-b80c-99314edba59b-BY56AE:username::"
+        },
+        {
+          "name": "SPRING_DATASOURCE_PASSWORD",
+          "valueFrom": "arn:aws:secretsmanager:eu-west-1:905418423035:secret:rds!db-669d0f56-8d1d-43ff-b80c-99314edba59b:password::"
         }
-      ]
-      # AQUI VOCÊ TAMBÉM DEVERIA INJETAR AS VARIÁVEIS DE BANCO DE DADOS
-      # Exemplo (usando Secrets Manager):
-      # secrets = [{
-      #   name = "SPRING_DATASOURCE_URL"
-      #   valueFrom = "arn:aws:secretsmanager:..."
-      # }]
+      ],
+      logConfiguration: {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/mini-erp-task",
+          "awslogs-region": "eu-west-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
     }
   ])
 }
