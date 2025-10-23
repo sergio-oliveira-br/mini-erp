@@ -42,7 +42,7 @@ phases:
   build:
     commands:
       - echo Running Maven clean install and executing all tests...
-      - mvn clean install
+      - mvn clean package
       - echo Building the Docker image...
       - docker build -t $ECR_REPO_URI:latest -t $ECR_REPO_URI:$IMAGE_TAG .
 
