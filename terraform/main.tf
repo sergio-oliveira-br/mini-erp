@@ -267,17 +267,7 @@ resource "aws_ecs_task_definition" "app" {
           "value": "jdbc:postgresql://minierp-postgres-db.cdo6c2kyu0bn.eu-west-1.rds.amazonaws.com:5432/minierp"
         },
       ],
-
-      secrets = [
-        {
-          name      = "SPRING_DATASOURCE_USERNAME",
-          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:rds!db-85f2ad26-b05c-452e-a9da-e1773ea56fec-KPOuuq:username::"
-        },
-        {
-          name      = "SPRING_DATASOURCE_PASSWORD",
-          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:rds!db-85f2ad26-b05c-452e-a9da-e1773ea56fec-KPOuuq:password::"
-        }
-      ],
+      
       logConfiguration: {
         "logDriver": "awslogs",
         "options": {
@@ -290,41 +280,16 @@ resource "aws_ecs_task_definition" "app" {
   ])
 }
 
-# Permissão para a ECS Task ler o Secret do RDS
-resource "aws_iam_policy" "ecs_task_secrets_policy" {
-  name        = "ecs-task-secrets-access"
-  description = "Permite a ECS Task ler secrets do Secrets Manager"
-  policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Effect = "Allow",
-        Action = [
-          "secretsmanager:GetSecretValue",
-          "secretsmanager:DescribeSecret"
-        ],
-        Resource = [
-          "arn:aws:secretsmanager:eu-west-1:905418423035:secret:rds!db-85f2ad26-b05c-452e-a9da-e1773ea56fec-*"
-        ]
-      }
-    ]
-  })
-}
-
-resource "aws_iam_role_policy_attachment" "ecs_task_secrets_attach" {
-  role       = aws_iam_role.ecs_task_execution_role.name
-  policy_arn = aws_iam_policy.ecs_task_secrets_policy.arn
-}
 
 
 # -----------------------------------------------------
-# 8. ECS SERVICE (Mantém a Task em Execução)
+# 8. ECS SERVICE (Keeps the task running)
 # -----------------------------------------------------
 resource "aws_ecs_service" "app" {
   name            = "mini-erp-service"
   cluster         = aws_ecs_cluster.mini_erp_cluster.id
   task_definition = aws_ecs_task_definition.app.arn
-  desired_count   = 1 # Mantém 1 instância em execução
+  desired_count   = 1
   launch_type     = "FARGATE"
 
   network_configuration {
