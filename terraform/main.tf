@@ -267,14 +267,15 @@ resource "aws_ecs_task_definition" "app" {
           "value": "jdbc:postgresql://minierp-postgres-db.cdo6c2kyu0bn.eu-west-1.rds.amazonaws.com:5432/minierp"
         },
       ],
-      secrets: [
+
+      secrets = [
         {
-          "name": "SPRING_DATASOURCE_USERNAME",
-          "valueFrom": "arn:aws:secretsmanager:eu-west-1:905418423035:secret:rds!db-669d0f56-8d1d-43ff-b80c-99314edba59b-BY56AE:username::"
+          name      = "SPRING_DATASOURCE_USERNAME",
+          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:rds!db-85f2ad26-b05c-452e-a9da-e1773ea56fec-KPOuuq:username::"
         },
         {
-          "name": "SPRING_DATASOURCE_PASSWORD",
-          "valueFrom": "arn:aws:secretsmanager:eu-west-1:905418423035:secret:rds!db-669d0f56-8d1d-43ff-b80c-99314edba59b:password::"
+          name      = "SPRING_DATASOURCE_PASSWORD",
+          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:rds!db-85f2ad26-b05c-452e-a9da-e1773ea56fec-KPOuuq:password::"
         }
       ],
       logConfiguration: {
@@ -288,6 +289,33 @@ resource "aws_ecs_task_definition" "app" {
     }
   ])
 }
+
+# Permissão para a ECS Task ler o Secret do RDS
+resource "aws_iam_policy" "ecs_task_secrets_policy" {
+  name        = "ecs-task-secrets-access"
+  description = "Permite a ECS Task ler secrets do Secrets Manager"
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = [
+          "secretsmanager:GetSecretValue",
+          "secretsmanager:DescribeSecret"
+        ],
+        Resource = [
+          "arn:aws:secretsmanager:eu-west-1:905418423035:secret:rds!db-85f2ad26-b05c-452e-a9da-e1773ea56fec-*"
+        ]
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "ecs_task_secrets_attach" {
+  role       = aws_iam_role.ecs_task_execution_role.name
+  policy_arn = aws_iam_policy.ecs_task_secrets_policy.arn
+}
+
 
 # -----------------------------------------------------
 # 8. ECS SERVICE (Mantém a Task em Execução)
