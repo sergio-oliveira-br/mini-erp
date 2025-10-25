@@ -35,7 +35,8 @@ public class InventoryController {
         model.addAttribute("items", itemService.findAll());
 
         //Output messages
-        model.addAttribute("message");
+        model.addAttribute("successMessage");
+        model.addAttribute("errorMessage");
 
         return "inventory";
     }
@@ -61,7 +62,7 @@ public class InventoryController {
     public String showDeleteConfirmation(@PathVariable Long id, RedirectAttributes redirectAttributes) {
 
         if(id == null){
-            redirectAttributes.addFlashAttribute("message", "Item not found");
+            redirectAttributes.addFlashAttribute("errorMessage", "Item not found");
             return "redirect:/inventory";
         }
         Item itemFoundById = itemService.findById(id);
@@ -75,14 +76,14 @@ public class InventoryController {
     @PostMapping("/delete/{id}")
     public String deleteItemById(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         itemService.delete(id);
-        redirectAttributes.addFlashAttribute("message", "Item successfully deleted!");
+        redirectAttributes.addFlashAttribute("successMessage", "Item successfully deleted!");
         return "redirect:/inventory";
     }
 
     @PostMapping("/update/{id}")
     public String updateItemById(Item itemToUpdate, RedirectAttributes redirectAttributes) {
         itemService.updatedItem(itemToUpdate);
-        redirectAttributes.addFlashAttribute("message",
+        redirectAttributes.addFlashAttribute("successMessage",
                  itemToUpdate.getDescription() + " successfully updated!");
         return "redirect:/inventory";
     }
