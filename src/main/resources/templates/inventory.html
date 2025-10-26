@@ -37,6 +37,8 @@
     <main class="container mt-3">
 
         <form th:action="@{/inventory/insert}" th:object="${item}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
             <div class="row g-3">
                 <div class="form-group col-12 col-md-12 mb-3">
                     <label for="description" class="form-label">Description</label>
@@ -113,6 +115,8 @@
                         </div>
                         <div class="modal-body" th:object="${item}">
                             <form th:action="@{'/inventory/update/' + ${item.id}}" method="post" id="editForm">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
 
                                 <div class="modal-body">
                                     <input type="hidden" id="edit-id" th:field="*{id}">
@@ -159,6 +163,8 @@
 
                         <div class="modal-body" th:object="${item}">
                             <form th:action="@{'/inventory/delete/' + ${item.id}}" method="post" id="deleteForm">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label for="delete-description" class="form-label">Description</label>
