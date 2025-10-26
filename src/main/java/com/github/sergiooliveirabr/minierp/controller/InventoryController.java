@@ -81,7 +81,19 @@ public class InventoryController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateItemById(Item itemToUpdate, RedirectAttributes redirectAttributes) {
+    public String updateItemById(@PathVariable Long id,
+                                 @ModelAttribute Item itemToUpdate,
+                                 RedirectAttributes redirectAttributes) {
+
+        Item itemFoundById = itemService.findById(id);
+
+        if(itemFoundById == null){
+            redirectAttributes.addFlashAttribute("errorMessage", "Item not found");
+            return "redirect:/inventory";
+        }
+
+        itemToUpdate.setId(id);
+
         itemService.updatedItem(itemToUpdate);
         redirectAttributes.addFlashAttribute("successMessage",
                  itemToUpdate.getDescription() + " successfully updated!");
