@@ -85,6 +85,11 @@ public class InventoryController {
                                  @ModelAttribute Item itemToUpdate,
                                  RedirectAttributes redirectAttributes) {
 
+        if(id <= 0) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Invalid ID");
+            return "redirect:/inventory";
+        }
+
         Item itemFoundById = itemService.findById(id);
 
         if(itemFoundById == null){
