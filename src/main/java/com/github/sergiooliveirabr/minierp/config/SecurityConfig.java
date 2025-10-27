@@ -17,7 +17,10 @@ public class SecurityConfig {
 
             .headers(headers -> headers
                 .contentSecurityPolicy(csp -> csp
-                        .policyDirectives("default-src 'self'; script-src 'self'; object-src 'none'; style-src 'self';")
+                    .policyDirectives("default-src 'self'; " +
+                    "script-src 'self' https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js; " +
+                    "style-src 'self' https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css; " +
+                    " object-src 'none';")
                 )
             );
 
