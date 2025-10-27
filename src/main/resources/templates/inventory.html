@@ -76,27 +76,27 @@
         <table class="mt-5 table table-striped">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Created</th>
-                <th>Updated</th>
-                <th></th>
+                <th scope="col">Id</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Created</th>
+                <th scope="col">Updated</th>
+                <th scope="col"></th>
             </tr>
             </thead>
 
             <tbody>
                 <tr th:each="item : ${items}">
-                    <th th:text="${item.id}"></th>
-                    <th th:text="${item.description}"></th>
-                    <th th:text="${item.price}"></th>
-                    <th th:text="${item.quantity}"></th>
-                    <th th:text="${item.created}"></th>
-                    <th th:text="${item.updated}"></th>
-                    <th>
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.description}"></td>
+                    <td th:text="${item.price}"></td>
+                    <td th:text="${item.quantity}"></td>
+                    <td th:text="${item.created}"></td>
+                    <td th:text="${item.updated}"></td>
+                    <td>
                         <a th:href="@{'/inventory/' + ${item.id}}" class="btn btn-secondary">Edit</a>
-                    </th>
+                    </td>
                 </tr>
             </tbody>
         </table>
