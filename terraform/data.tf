@@ -14,3 +14,15 @@ data "aws_iam_role" "codebuild_role" {
 data "aws_availability_zones" "available" {
   state = "available"
 }
+
+# -----------------------------------------------------
+# Reference to RDS Secret #
+# -----------------------------------------------------
+data "aws_secretsmanager_secret" "rds_db_secret" {
+  arn  = var.db_secret_arn
+  name = var.db_secret_name != null ? var.db_secret_name : null
+}
+
+data "aws_secretsmanager_secret_version" "rds_db_secret_version" {
+  secret_id = data.aws_secretsmanager_secret.rds_db_secret.id
+}
