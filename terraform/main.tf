@@ -257,12 +257,20 @@ resource "aws_ecs_task_definition" "app" {
           protocol      = "tcp"
         }
       ],
+
       environment = [
         {
           name  = "SPRING_PROFILES_ACTIVE"
           value = "prod"
         }
-      ]
+      ],
+
+      secrets = [
+        {
+          name      = "RDS_DB_SECRET"
+          valueFrom = var.db_secret_arn
+        }
+      ],
       
       logConfiguration: {
         "logDriver": "awslogs",
