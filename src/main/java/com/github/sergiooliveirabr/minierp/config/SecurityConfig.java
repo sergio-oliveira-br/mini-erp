@@ -1,5 +1,9 @@
 package com.github.sergiooliveirabr.minierp.config;
 
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.SessionCookieConfig;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -31,5 +35,24 @@ public class SecurityConfig {
             );
 
         return http.build();
+    }
+
+    // Setting cookies
+    @Bean
+    public ServletContextInitializer servletContextInitializer() {
+
+        return new ServletContextInitializer() {
+            
+            @Override
+            public void onStartup(ServletContext servletContext) throws ServletException {
+
+                SessionCookieConfig sessionCookieConfig = servletContext.getSessionCookieConfig();
+
+                sessionCookieConfig.setHttpOnly(true);
+                sessionCookieConfig.setPath("/");
+                sessionCookieConfig.setName("JSESSIONID");
+                sessionCookieConfig.setAttribute("SameSite", "Lax");
+            }
+        };
     }
 }
