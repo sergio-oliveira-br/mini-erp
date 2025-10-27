@@ -268,7 +268,7 @@ resource "aws_ecs_task_definition" "app" {
         },
         {
           name  = "DB_NAME"
-          value = "postgres" # Seu nome de banco de dados
+          value = "postgres"
         }
       ],
 
