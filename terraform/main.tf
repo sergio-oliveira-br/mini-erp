@@ -261,22 +261,6 @@ resource "aws_ecs_task_definition" "app" {
         {
           name  = "SPRING_PROFILES_ACTIVE"
           value = "prod"
-        },
-        {
-          name  = "JDBC_DATABASE_URL"
-          value = "jdbc:postgresql://minierp-postgres-db.cdo6c2kyu0bn.eu-west-1.rds.amazonaws.com:5432/postgres"
-        },
-      ],
-
-      # Secret Variables - from Secret Manager
-      secrets = [
-        {
-          name      = "DB_USERNAME"
-          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:rds!db-b07c2336-0555-4661-b9b8-60048ced9ef3-qmVsXU:username"
-        },
-        {
-          name      = "DB_PASSWORD"
-          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:rds!db-b07c2336-0555-4661-b9b8-60048ced9ef3-qmVsXU:password"
         }
       ]
       
