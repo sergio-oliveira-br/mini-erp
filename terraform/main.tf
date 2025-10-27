@@ -263,13 +263,9 @@ resource "aws_ecs_task_definition" "app" {
           value = "prod"
         },
         {
-          name  = "DB_ENDPOINT"
-          value = "minierp-postgres-db.cdo6c2kyu0bn.eu-west-1.rds.amazonaws.com"
+          name  = "JDBC_DATABASE_URL"
+          value = "jdbc:postgresql://minierp-postgres-db.cdo6c2kyu0bn.eu-west-1.rds.amazonaws.com:5432/postgres"
         },
-        {
-          name  = "DB_NAME"
-          value = "postgres"
-        }
       ],
 
       # Secret Variables - from Secret Manager
