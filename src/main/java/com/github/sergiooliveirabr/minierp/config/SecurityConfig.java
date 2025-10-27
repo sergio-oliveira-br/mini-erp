@@ -13,6 +13,12 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth -> auth
                 .anyRequest().permitAll()
+            )
+
+            .headers(headers -> headers
+                .contentSecurityPolicy(csp -> csp
+                        .policyDirectives("default-src 'self'; script-src 'self'; object-src 'none'; style-src 'self';")
+                )
             );
 
         return http.build();
