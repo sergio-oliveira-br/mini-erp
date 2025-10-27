@@ -29,7 +29,12 @@ public class SecurityConfig {
                         "img-src 'self' data:; " +
                         "object-src 'none'; " +
                         "connect-src 'self'; " +
-                        "frame-src 'none';"
+                        "frame-src 'none'; " +
+                        "base-uri 'self'; " +
+                        "form-action 'self'; " +
+                        "manifest-src 'self'; " +
+                        "media-src 'self'; " +
+                        "worker-src 'self';"
                    )
                 )
             );
