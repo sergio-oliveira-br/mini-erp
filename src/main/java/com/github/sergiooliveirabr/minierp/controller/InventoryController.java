@@ -3,6 +3,7 @@ package com.github.sergiooliveirabr.minierp.controller;
 import com.github.sergiooliveirabr.minierp.entity.Item;
 import com.github.sergiooliveirabr.minierp.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,11 @@ public class InventoryController {
     @Autowired
     public InventoryController(ItemService itemService) {
         this.itemService = itemService;
+    }
+
+    @ModelAttribute
+    public void addCsrfToken(Model model, CsrfToken token) {
+        model.addAttribute("_csrf", token);
     }
 
     @GetMapping
