@@ -274,12 +274,12 @@ resource "aws_ecs_task_definition" "app" {
       secrets = [
         {
           name      = "SPRING_DATASOURCE_USERNAME"
-          valueFrom = "postgres"
+          value = "postgres"
 
         },
         {
           name      = "SPRING_DATASOURCE_PASSWORD"
-          valueFrom = "devopssec"
+          value = "devopssec"
         }
       ],
 
