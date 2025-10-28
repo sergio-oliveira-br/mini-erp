@@ -50,13 +50,7 @@ phases:
       - echo Running Maven clean install and executing all tests...
       - mvn clean install -X
       - echo Building the Docker image...
-#      - docker build -t $ECR_REPO_URI:latest -t $ECR_REPO_URI:$IMAGE_TAG .
-      - docker build \
-        --build-arg SPRING_DATASOURCE_URL=$SPRING_DATASOURCE_URL \
-        --build-arg SPRING_DATASOURCE_USERNAME=$SPRING_DATASOURCE_USERNAME \
-        --build-arg SPRING_DATASOURCE_PASSWORD=$SPRING_DATASOURCE_PASSWORD \
-        -t $ECR_REPO_URI:latest \
-        -t $ECR_REPO_URI:$IMAGE_TAG .
+      - docker build -t $ECR_REPO_URI:latest -t $ECR_REPO_URI:$IMAGE_TAG .
 
   # -----------------------------------------------------
   # 4. POST-BUILD - vulnerability scanner
