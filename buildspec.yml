@@ -27,11 +27,6 @@ phases:
       # active the prodction profile
       - export SPRING_PROFILES_ACTIVE=prod
 
-
-#      # Login Docker Hub by variables
-#      - echo Logging in to Docker Hub securely..
-#      - echo "$DOCKER_PAT" | docker login --username "$DOCKER_USER" --password-stdin
-
       # Login Docker Hub using Secrets Manager
       - echo "Logging in to Docker Hub securely..."
       - export DOCKER_CREDS=$(aws secretsmanager get-secret-value --secret-id docker-hub-credentials --query SecretString --output text)
