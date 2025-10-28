@@ -264,7 +264,22 @@ resource "aws_ecs_task_definition" "app" {
           value = "prod"
         }
       ],
-      
+
+      secrets = [
+        {
+          name      = "SPRING_DATASOURCE_URL"
+          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh"
+        },
+        {
+          name      = "SPRING_DATASOURCE_USERNAME"
+          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh"
+        },
+        {
+          name      = "SPRING_DATASOURCE_PASSWORD"
+          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh"
+        }
+      ],
+
       logConfiguration: {
         "logDriver": "awslogs",
         "options": {
