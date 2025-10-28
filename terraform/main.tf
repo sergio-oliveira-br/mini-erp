@@ -269,18 +269,18 @@ resource "aws_ecs_task_definition" "app" {
           name  = "SPRING_DATASOURCE_URL"
           value = "jdbc:postgresql://minierp-postgres-db.cdo6c2kyu0bn.eu-west-1.rds.amazonaws.com:5432/postgres"
         },
+      ],
+
+      secrets = [
         {
           name      = "SPRING_DATASOURCE_USERNAME"
-          value = "postgres"
-
+          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh:username::"
         },
         {
           name      = "SPRING_DATASOURCE_PASSWORD"
-          value = "devopssec"
+          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh:password::"
         }
-      ],
-
-      secrets = [],
+      ]
 
 
       logConfiguration: {
