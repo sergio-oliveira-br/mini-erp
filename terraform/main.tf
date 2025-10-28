@@ -262,21 +262,21 @@ resource "aws_ecs_task_definition" "app" {
         {
           name  = "SPRING_PROFILES_ACTIVE"
           value = "prod"
-        }
+        },
+        {
+          name  = "SPRING_DATASOURCE_URL"
+          value = "jdbc:postgresql://minierp-postgres-db.cdo6c2kyu0bn.eu-west-1.rds.amazonaws.com:5432/postgres"
+        },
       ],
 
       secrets = [
         {
-          name      = "SPRING_DATASOURCE_URL"
-          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh"
-        },
-        {
           name      = "SPRING_DATASOURCE_USERNAME"
-          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh"
+          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh:username::"
         },
         {
           name      = "SPRING_DATASOURCE_PASSWORD"
-          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh"
+          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh:password::"
         }
       ],
 
@@ -324,6 +324,14 @@ resource "aws_security_group" "allow_http" {
     description = "HTTP 8080 from internet"
     from_port   = 8080
     to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "HTTP 5432 from internet to DB"
+    from_port   = 5432
+    to_port     = 5432
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
