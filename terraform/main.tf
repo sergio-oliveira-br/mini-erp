@@ -242,6 +242,8 @@ resource "aws_ecs_task_definition" "app" {
   cpu                      = "256"
   memory                   = "512"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
+  task_role_arn            = "arn:aws:iam::905418423035:role/ecs-task-role-mini-erp"
+
 
   container_definitions = jsonencode([
     {
@@ -272,13 +274,14 @@ resource "aws_ecs_task_definition" "app" {
       secrets = [
         {
           name      = "SPRING_DATASOURCE_USERNAME"
-          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh:username::"
+          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh"
         },
         {
           name      = "SPRING_DATASOURCE_PASSWORD"
-          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh:password::"
+          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh"
         }
-      ],
+      ]
+
 
       logConfiguration: {
         "logDriver": "awslogs",
@@ -303,6 +306,8 @@ resource "aws_ecs_service" "app" {
   task_definition = aws_ecs_task_definition.app.arn
   desired_count   = 1
   launch_type     = "FARGATE"
+
+  enable_execute_command = true
 
   network_configuration {
     subnets         = aws_subnet.public[*].id
