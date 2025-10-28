@@ -35,6 +35,16 @@ COPY --from=build /app/target/*.jar app.jar
 ENV PORT 8080
 EXPOSE 8080
 
+# Build args para receber as variáveis do RDS
+ARG SPRING_DATASOURCE_URL
+ARG SPRING_DATASOURCE_USERNAME
+ARG SPRING_DATASOURCE_PASSWORD
+
+# Exporta como variáveis de ambiente para o Spring Boot
+ENV SPRING_DATASOURCE_URL=$SPRING_DATASOURCE_URL
+ENV SPRING_DATASOURCE_USERNAME=$SPRING_DATASOURCE_USERNAME
+ENV SPRING_DATASOURCE_PASSWORD=$SPRING_DATASOURCE_PASSWORD
+
 # Sets the execution command
 #ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 ENTRYPOINT ["java", "-javaagent:/app/dd-java-agent.jar", "-jar", "/app/app.jar"]
