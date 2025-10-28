@@ -31,13 +31,6 @@ phases:
       - export DOCKER_PAT=$(echo $DOCKER_CREDS | jq -r '.password')
       - echo $DOCKER_PAT | docker login --username $DOCKER_USER --password-stdin
 
-      # Fetch RDS Secret
-      - echo "Fetching RDS secret from AWS Secrets Manager..."
-      - export RDS_SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id $DB_SECRET_ARN --query SecretString --output text)
-      - export SPRING_DATASOURCE_URL="jdbc:postgresql://$(echo $RDS_SECRET_JSON | jq -r .host):$(echo $RDS_SECRET_JSON | jq -r .port)/$(echo $RDS_SECRET_JSON | jq -r .dbname)"
-      - export SPRING_DATASOURCE_USERNAME=$(echo $RDS_SECRET_JSON | jq -r .username)
-      - export SPRING_DATASOURCE_PASSWORD=$(echo $RDS_SECRET_JSON | jq -r .password)
-
 
   # -----------------------------------------------------
   # 3. BUILD
