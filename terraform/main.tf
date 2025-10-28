@@ -274,13 +274,14 @@ resource "aws_ecs_task_definition" "app" {
       secrets = [
         {
           name      = "SPRING_DATASOURCE_USERNAME"
-          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh"
+          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name:username::"
+
         },
         {
           name      = "SPRING_DATASOURCE_PASSWORD"
-          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name-s89Rwh"
+          valueFrom = "arn:aws:secretsmanager:eu-west-1:905418423035:secret:minierp-postgres-db-secret-name:password::"
         }
-      ]
+      ],
 
 
       logConfiguration: {
