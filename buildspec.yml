@@ -31,6 +31,12 @@ phases:
       - export DOCKER_PAT=$(echo $DOCKER_CREDS | jq -r '.password')
       - echo $DOCKER_PAT | docker login --username $DOCKER_USER --password-stdin
 
+      - echo "Fetching DB credentials from Secrets Manager..."
+      - export DB_SECRET=$(aws secretsmanager get-secret-value --secret-id minierp-postgres-db-secret-name --query SecretString --output text)
+      - export SPRING_DATASOURCE_USERNAME=$(echo $DB_SECRET | jq -r '.username')
+      - export SPRING_DATASOURCE_PASSWORD=$(echo $DB_SECRET | jq -r '.password')
+
+
 
   # -----------------------------------------------------
   # 3. BUILD
@@ -56,6 +62,10 @@ phases:
       - docker push $ECR_REPO_URI:$IMAGE_TAG
       - echo Writing image definitions file with commit tag:$IMAGE_TAG
       - printf '[{"name":"mini-erp","imageUri":"%s"}]' $ECR_REPO_URI:$IMAGE_TAG > imagedefinitions.json
+
+      - echo VERIFICATION!!!!
+      - echo $SPRING_DATASOURCE_USERNAME
+      - echo $SPRING_DATASOURCE_PASSWORD
 
 artifacts:
   files:
