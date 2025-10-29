@@ -75,7 +75,7 @@ public class InventoryController {
 
         if(id == null){
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE, "Item not found");
-            return "redirect:/inventory";
+            return REDIRECT_TO_INVENTORY_PAGE;
         }
         Item itemFoundById = itemService.findById(id);
 
