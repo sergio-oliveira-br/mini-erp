@@ -15,6 +15,9 @@ public class InventoryController {
 
     private final ItemService itemService;
 
+    private static final String ITEM_FOUND_BY_ID = "itemFoundById";
+
+
     @Autowired
     public InventoryController(ItemService itemService) {
         this.itemService = itemService;
@@ -29,11 +32,11 @@ public class InventoryController {
     public String inventoryView(Model model) {
 
         // Adds the empty Item object to the CREATE form (th:object="${item}")
-        if (!model.containsAttribute("itemFoundById")) {
+        if (!model.containsAttribute(ITEM_FOUND_BY_ID)) {
             model.addAttribute("item", new Item());
         }
         else {
-            Item itemFound = (Item) model.getAttribute("itemFoundById");
+            Item itemFound = (Item) model.getAttribute(ITEM_FOUND_BY_ID);
             model.addAttribute("item", itemFound);
         }
 
@@ -58,7 +61,7 @@ public class InventoryController {
 
         Item itemFoundById = itemService.findById(id);
 
-        redirectAttributes.addFlashAttribute("itemFoundById", itemFoundById);
+        redirectAttributes.addFlashAttribute(ITEM_FOUND_BY_ID, itemFoundById);
         redirectAttributes.addFlashAttribute("openEditModal", true);
 
         return "redirect:/inventory";
@@ -73,7 +76,7 @@ public class InventoryController {
         }
         Item itemFoundById = itemService.findById(id);
 
-        redirectAttributes.addFlashAttribute("itemFoundById", itemFoundById);
+        redirectAttributes.addFlashAttribute(ITEM_FOUND_BY_ID, itemFoundById);
         redirectAttributes.addFlashAttribute("openDeleteModal", true);
 
         return "redirect:/inventory";
