@@ -16,6 +16,8 @@ public class InventoryController {
     private final ItemService itemService;
 
     private static final String ITEM_FOUND_BY_ID = "itemFoundById";
+    private static final String SUCCESS_MESSAGE = "successMessage";
+    private static final String ERROR_MESSAGE = "errorMessage";
 
 
     @Autowired
@@ -44,7 +46,7 @@ public class InventoryController {
         model.addAttribute("items", itemService.findAll());
 
         //Output messages
-        model.addAttribute("successMessage");
+        model.addAttribute(SUCCESS_MESSAGE);
         model.addAttribute("errorMessage");
 
         return "inventory";
@@ -85,7 +87,7 @@ public class InventoryController {
     @PostMapping("/delete/{id}")
     public String deleteItemById(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         itemService.delete(id);
-        redirectAttributes.addFlashAttribute("successMessage", "Item successfully deleted!");
+        redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE, "Item successfully deleted!");
         return "redirect:/inventory";
     }
 
@@ -109,7 +111,7 @@ public class InventoryController {
         itemToUpdate.setId(id);
 
         itemService.updatedItem(itemToUpdate);
-        redirectAttributes.addFlashAttribute("successMessage",
+        redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,
                  itemToUpdate.getDescription() + " successfully updated!");
         return "redirect:/inventory";
     }
