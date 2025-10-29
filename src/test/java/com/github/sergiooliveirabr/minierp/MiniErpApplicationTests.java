@@ -10,6 +10,7 @@ class MiniErpApplicationTests {
 
     @Test
     void contextLoads() {
+        /* Tests implemented in ../MiniErpApplicationTests.java */
     }
 
 }
