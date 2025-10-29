@@ -18,6 +18,7 @@ public class InventoryController {
     private static final String ITEM_FOUND_BY_ID = "itemFoundById";
     private static final String SUCCESS_MESSAGE = "successMessage";
     private static final String ERROR_MESSAGE = "errorMessage";
+    private static final String REDIRECT_TO_INVENTORY_PAGE= "redirect:/inventory";
 
 
     @Autowired
@@ -55,7 +56,7 @@ public class InventoryController {
     @PostMapping("/insert")
     public String insertItem(@ModelAttribute("item") Item item) {
         itemService.save(item);
-        return "redirect:/inventory";
+        return REDIRECT_TO_INVENTORY_PAGE;
     }
 
     @GetMapping("/{id}")
@@ -66,7 +67,7 @@ public class InventoryController {
         redirectAttributes.addFlashAttribute(ITEM_FOUND_BY_ID, itemFoundById);
         redirectAttributes.addFlashAttribute("openEditModal", true);
 
-        return "redirect:/inventory";
+        return REDIRECT_TO_INVENTORY_PAGE;
     }
 
     @GetMapping("/confirm-delete/{id}")
@@ -81,14 +82,14 @@ public class InventoryController {
         redirectAttributes.addFlashAttribute(ITEM_FOUND_BY_ID, itemFoundById);
         redirectAttributes.addFlashAttribute("openDeleteModal", true);
 
-        return "redirect:/inventory";
+        return REDIRECT_TO_INVENTORY_PAGE;
     }
 
     @PostMapping("/delete/{id}")
     public String deleteItemById(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         itemService.delete(id);
         redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE, "Item successfully deleted!");
-        return "redirect:/inventory";
+        return REDIRECT_TO_INVENTORY_PAGE;
     }
 
     @PostMapping("/update/{id}")
@@ -98,14 +99,14 @@ public class InventoryController {
 
         if(id <= 0) {
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE, "Invalid ID");
-            return "redirect:/inventory";
+            return REDIRECT_TO_INVENTORY_PAGE;
         }
 
         Item itemFoundById = itemService.findById(id);
 
         if(itemFoundById == null){
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE, "Item not found");
-            return "redirect:/inventory";
+            return REDIRECT_TO_INVENTORY_PAGE;
         }
 
         itemToUpdate.setId(id);
@@ -113,6 +114,6 @@ public class InventoryController {
         itemService.updatedItem(itemToUpdate);
         redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,
                  itemToUpdate.getDescription() + " successfully updated!");
-        return "redirect:/inventory";
+        return REDIRECT_TO_INVENTORY_PAGE;
     }
 }
