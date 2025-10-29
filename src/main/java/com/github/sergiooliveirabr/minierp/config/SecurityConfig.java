@@ -24,7 +24,7 @@ public class SecurityConfig {
                     .policyDirectives(
                         "default-src 'self'; " +
                         "script-src 'self' https://cdn.jsdelivr.net; " +
-                        "style-src 'self' https://cdn.jsdelivr.net; " +
+                        "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; " +
                         "font-src 'self'; " +
                         "img-src 'self' data:; " +
                         "object-src 'none'; " +
