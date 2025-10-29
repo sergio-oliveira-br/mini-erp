@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @ActiveProfiles
 @Transactional // Ensures that each test will be reversed at the end (automatic cleaning)
-public class ItemServiceTest {
+class ItemServiceTest {
 
     @Autowired
     private ItemService itemService;
