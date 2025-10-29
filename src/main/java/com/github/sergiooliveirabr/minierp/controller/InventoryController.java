@@ -47,7 +47,7 @@ public class InventoryController {
 
         //Output messages
         model.addAttribute(SUCCESS_MESSAGE);
-        model.addAttribute("errorMessage");
+        model.addAttribute(ERROR_MESSAGE);
 
         return "inventory";
     }
@@ -73,7 +73,7 @@ public class InventoryController {
     public String showDeleteConfirmation(@PathVariable Long id, RedirectAttributes redirectAttributes) {
 
         if(id == null){
-            redirectAttributes.addFlashAttribute("errorMessage", "Item not found");
+            redirectAttributes.addFlashAttribute(ERROR_MESSAGE, "Item not found");
             return "redirect:/inventory";
         }
         Item itemFoundById = itemService.findById(id);
@@ -97,14 +97,14 @@ public class InventoryController {
                                  RedirectAttributes redirectAttributes) {
 
         if(id <= 0) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Invalid ID");
+            redirectAttributes.addFlashAttribute(ERROR_MESSAGE, "Invalid ID");
             return "redirect:/inventory";
         }
 
         Item itemFoundById = itemService.findById(id);
 
         if(itemFoundById == null){
-            redirectAttributes.addFlashAttribute("errorMessage", "Item not found");
+            redirectAttributes.addFlashAttribute(ERROR_MESSAGE, "Item not found");
             return "redirect:/inventory";
         }
 
