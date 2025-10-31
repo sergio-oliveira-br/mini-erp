@@ -1,0 +1,112 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0.1 Safari/605.1.15" version="28.2.8">
+  <diagram name="Page-1" id="YcTahbvGJgFYJzj5LyhA">
+    <mxGraphModel dx="1803" dy="755" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-43" value="" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="582.5" y="490" width="250" height="215" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-42" value="" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="2.5" y="490" width="250" height="215" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-19" value="" style="shape=dataStorage;whiteSpace=wrap;html=1;fixedSize=1;rotation=-180;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="-29" y="100" width="898" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-7" value="" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="10" y="177.5" width="250" height="215" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-8" value="" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="295" y="177.5" width="250" height="215" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-9" value="" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="579" y="177.5" width="250" height="215" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-1" value="GitHub" style="ellipse;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="77.5" y="280" width="115" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-14" value="Amazon ECS" style="ellipse;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="646.5" y="280" width="115" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-15" value="Unit Tests" style="ellipse;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="299" y="266" width="115" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-16" value="AWS CodeBuild" style="ellipse;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="424" y="266" width="115" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-18" value="AWS CodePipeline" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=30;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="260" y="120" width="342" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-21" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;flowAnimation=0;sketch=1;curveFitting=1;jiggle=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="170" y="214" as="sourcePoint" />
+            <mxPoint x="290" y="210" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="205" y="214" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-22" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;flowAnimation=0;sketch=1;curveFitting=1;jiggle=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="454" y="214" as="sourcePoint" />
+            <mxPoint x="574" y="210" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="489" y="214" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-25" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;sketch=1;curveFitting=1;jiggle=2;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="135" y="520" as="sourcePoint" />
+            <mxPoint x="134.5" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-27" value="SonarQube" style="ellipse;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="77.5" y="610" width="115" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-28" value="Docker" style="ellipse;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="362.5" y="326" width="115" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-29" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Source&lt;/h1&gt;&lt;p&gt;Versioning and automatic build trigger&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="17.5" y="192" width="235" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-30" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Build&lt;/h1&gt;&lt;p&gt;Code compilation, packaging and validation&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="302" y="190" width="243" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-31" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Deploy&lt;/h1&gt;&lt;p&gt;Continuous delivery in containerized environment&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="586" y="188" width="243" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-35" value="AWS CloudWatch" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="494" y="326" width="152.5" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-37" value="" style="endArrow=none;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.25;exitY=0.25;exitDx=0;exitDy=0;exitPerimeter=0;sketch=1;curveFitting=1;jiggle=2;startFill=1;endFill=0;" edge="1" parent="1" source="dp8Yb_JrOo4UpQHVcCtX-35" target="dp8Yb_JrOo4UpQHVcCtX-16">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="460" as="sourcePoint" />
+            <mxPoint x="430" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-38" value="" style="endArrow=classic;startArrow=none;html=1;rounded=0;entryX=0.88;entryY=0.25;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;sketch=1;curveFitting=1;jiggle=2;entryPerimeter=0;startFill=0;" edge="1" parent="1" source="dp8Yb_JrOo4UpQHVcCtX-14" target="dp8Yb_JrOo4UpQHVcCtX-35">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="534" y="370" as="sourcePoint" />
+            <mxPoint x="500" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-40" value="ZAP" style="ellipse;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="646.5" y="610" width="115" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-41" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Security Scanning&lt;/h1&gt;&lt;p&gt;Static analysis of source code&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="10" y="520" width="235" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-45" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;sketch=1;curveFitting=1;jiggle=2;" edge="1" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="707.5" y="520" as="sourcePoint" />
+            <mxPoint x="707" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dp8Yb_JrOo4UpQHVcCtX-46" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Security Scanning&lt;/h1&gt;&lt;p&gt;Dynamic testing of the running application&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="590" y="520" width="235" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
