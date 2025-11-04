@@ -176,7 +176,7 @@ resource "aws_internet_gateway" "app_igw" {
   }
 }
 
-# 5.3. Subnets Públicas (mínimo de 2 para Fargate)
+# 5.3. Public Subnets (minimum of 2 for Fargate)
 resource "aws_subnet" "public" {
   count             = 2 # Cria duas subnets
   vpc_id            = aws_vpc.app_vpc.id
@@ -189,7 +189,7 @@ resource "aws_subnet" "public" {
   }
 }
 
-# 5.4. Tabela de Roteamento Pública (para acesso à Internet)
+# 5.4. Public Routing Table (for Internet access)
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.app_vpc.id
 
@@ -199,7 +199,7 @@ resource "aws_route_table" "public" {
   }
 }
 
-# 5.5. Associação da Tabela de Roteamento às Subnets
+# 5.5. Routing Table Association to Subnets
 resource "aws_route_table_association" "public" {
   count          = 2
   subnet_id      = aws_subnet.public[count.index].id
