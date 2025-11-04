@@ -79,6 +79,30 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
   })
 }
 
+# Allow the pipeline to deploy new revisions
+resource "aws_iam_role_policy" "codepipeline_ecs_policy" {
+  name = "codepipeline-ecs-access"
+  role = aws_iam_role.codepipeline_role.name
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = [
+          "ecs:UpdateService",
+          "ecs:RegisterTaskDefinition",
+          "ecs:DescribeServices",
+          "ecs:DescribeTaskDefinition",
+          "iam:PassRole"
+        ],
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+
 
 
 # -----------------------------------------------------
