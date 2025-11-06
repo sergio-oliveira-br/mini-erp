@@ -3,6 +3,7 @@ package com.github.sergiooliveirabr.minierp.controller;
 import com.github.sergiooliveirabr.minierp.entity.Item;
 import com.github.sergiooliveirabr.minierp.service.ItemService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -89,14 +90,20 @@ public class InventoryController {
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteItemById(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+    public String deleteItemById(@PathVariable @Positive @Valid Long id,
+                                 RedirectAttributes redirectAttributes) {
+
+        if(id <= 0){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid ID");
+        }
+
         itemService.delete(id);
         redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE, "Item successfully deleted!");
         return REDIRECT_TO_INVENTORY_PAGE;
     }
 
     @PostMapping("/update/{id}")
-    public String updateItemById(@PathVariable Long id,
+    public String updateItemById(@PathVariable @Positive @Valid Long id,
                                  @Valid @ModelAttribute Item itemToUpdate,
                                  RedirectAttributes redirectAttributes) {
 
