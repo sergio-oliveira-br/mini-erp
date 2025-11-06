@@ -2,6 +2,7 @@ package com.github.sergiooliveirabr.minierp.controller;
 
 import com.github.sergiooliveirabr.minierp.entity.Item;
 import com.github.sergiooliveirabr.minierp.service.ItemService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -96,7 +97,7 @@ public class InventoryController {
 
     @PostMapping("/update/{id}")
     public String updateItemById(@PathVariable Long id,
-                                 @ModelAttribute Item itemToUpdate,
+                                 @Valid @ModelAttribute Item itemToUpdate,
                                  RedirectAttributes redirectAttributes) {
 
         if(id <= 0) {
