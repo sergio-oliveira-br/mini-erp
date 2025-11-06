@@ -3,18 +3,21 @@ package com.github.sergiooliveirabr.minierp.controller;
 import com.github.sergiooliveirabr.minierp.entity.Item;
 import com.github.sergiooliveirabr.minierp.service.ItemService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/inventory")
+@Validated
 public class InventoryController {
 
     private final ItemService itemService;
@@ -90,12 +93,13 @@ public class InventoryController {
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteItemById(@PathVariable @Positive @Valid Long id,
+    public String deleteItemById(@PathVariable @Positive @Valid @NotNull Long id,
                                  RedirectAttributes redirectAttributes) {
 
         if(id <= 0){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid ID");
         }
+
 
         itemService.delete(id);
         redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE, "Item successfully deleted!");
@@ -103,11 +107,11 @@ public class InventoryController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateItemById(@PathVariable @Positive @Valid Long id,
+    public String updateItemById(@PathVariable @Positive @Valid @NotNull Long id,
                                  @Valid @ModelAttribute Item itemToUpdate,
                                  RedirectAttributes redirectAttributes) {
 
-        if(id <= 0) {
+        if(id <= 0){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid ID");
         }
 
