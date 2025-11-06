@@ -1,6 +1,9 @@
 package com.github.sergiooliveirabr.minierp.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,10 +16,15 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String description;
 
+    @NotNull
+    @Min(0)
     private BigDecimal price;
 
+    @NotNull
+    @Min(0)
     private Integer quantity;
 
     @Column(name = "created")
