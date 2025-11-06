@@ -76,7 +76,6 @@
         <table class="mt-5 table table-striped">
             <thead>
             <tr>
-                <th scope="col">Id</th>
                 <th scope="col">Description</th>
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
@@ -88,7 +87,6 @@
 
             <tbody>
                 <tr th:each="item : ${items}">
-                    <td th:text="${item.id}"></td>
                     <td th:text="${item.description}"></td>
                     <td th:text="${item.price}"></td>
                     <td th:text="${item.quantity}"></td>
