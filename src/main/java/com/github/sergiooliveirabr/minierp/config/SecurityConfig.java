@@ -24,21 +24,27 @@ public class SecurityConfig {
                     .policyDirectives(
                         "default-src 'self'; " +
                         "script-src 'self' https://cdn.jsdelivr.net; " +
+                        "script-src-elem 'self' https://cdn.jsdelivr.net; " +
                         "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; " +
+                        "style-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net; " +
                         "font-src 'self'; " +
                         "img-src 'self' data:; " +
                         "object-src 'none'; " +
                         "connect-src 'self'; " +
+                        "child-src 'none'; " +
                         "frame-src 'none'; " +
+                        "frame-ancestors 'none'; " +
                         "base-uri 'self'; " +
                         "form-action 'self'; " +
                         "manifest-src 'self'; " +
                         "media-src 'self'; " +
-                        "worker-src 'self';"
-                   )
+                        "worker-src 'self'; " +
+                        "navigate-to 'self'; " +
+                        "prefetch-src 'self'; " +
+                        "require-sri-for script style;"
+                    )
                 )
             );
-
         return http.build();
     }
 
