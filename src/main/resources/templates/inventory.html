@@ -102,8 +102,7 @@
 
         <!--    MODAL   -->
         <div th:if="${openEditModal}">
-            <div class="modal" tabindex="-1"  th:classappend="${openEditModal} ? 'show'"
-                 th:style="${openEditModal} ? 'display: block'">
+            <div class="modal" tabindex="-1"  th:classappend="${openEditModal} ? 'show d-block'">
 
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -149,8 +148,7 @@
 
         <!-- Modal Delete-->
         <div th:if="${openDeleteModal}">
-            <div class="modal" tabindex="-1"  th:classappend="${openDeleteModal} ? 'show'"
-                 th:style="${openDeleteModal} ? 'display: block'">
+            <div class="modal" tabindex="-1"  th:classappend="${openDeleteModal} ? 'show d-block'">
 
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
