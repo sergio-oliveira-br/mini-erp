@@ -3,10 +3,12 @@ package com.github.sergiooliveirabr.minierp.controller;
 import com.github.sergiooliveirabr.minierp.entity.Item;
 import com.github.sergiooliveirabr.minierp.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -98,15 +100,13 @@ public class InventoryController {
                                  RedirectAttributes redirectAttributes) {
 
         if(id <= 0) {
-            redirectAttributes.addFlashAttribute(ERROR_MESSAGE, "Invalid ID");
-            return REDIRECT_TO_INVENTORY_PAGE;
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid ID");
         }
 
         Item itemFoundById = itemService.findById(id);
 
         if(itemFoundById == null){
-            redirectAttributes.addFlashAttribute(ERROR_MESSAGE, "Item not found");
-            return REDIRECT_TO_INVENTORY_PAGE;
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Item not found");
         }
 
         itemToUpdate.setId(id);
