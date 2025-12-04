@@ -25,9 +25,6 @@ FROM eclipse-temurin:17-jre-focal
 # Sets the working directory
 WORKDIR /app
 
-# Inserting the Agent into the Container
-ADD https://dtdg.co/latest-java-tracer /app/dd-java-agent.jar
-
 # Copies the compiled JAR from the BUILD PHASE
 COPY --from=build /app/target/*.jar app.jar
 
@@ -43,5 +40,4 @@ ENV SPRING_DATASOURCE_PASSWORD=$SPRING_DATASOURCE_PASSWORD
 
 
 # Sets the execution command
-#ENTRYPOINT ["java", "-jar", "/app/app.jar"]
-ENTRYPOINT ["java", "-javaagent:/app/dd-java-agent.jar", "-jar", "/app/app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
