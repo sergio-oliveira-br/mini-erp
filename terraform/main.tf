@@ -169,7 +169,6 @@ resource "aws_codepipeline" "app_pipeline" {
         ClusterName = aws_ecs_cluster.mini_erp_cluster.name
         ServiceName = aws_ecs_service.app.name
         FileName    = "imagedefinitions.json"
-        TaskDefinition = "task-definition.json"
       }
     }
   }
