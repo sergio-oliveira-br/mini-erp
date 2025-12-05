@@ -297,6 +297,8 @@ resource "aws_ecs_task_definition" "app" {
     {
       name      = "mini-erp",
       image     = "placeholder",
+      cpu       = 1024,
+      memory    = 2048,
       essential = true,
       portMappings = [
         {
@@ -328,7 +330,7 @@ resource "aws_ecs_task_definition" "app" {
       ]
 
 
-      logConfiguration: {
+      logConfiguration = {
         "logDriver": "awslogs",
         "options": {
           "awslogs-group": "/ecs/mini-erp-task",
