@@ -23,7 +23,9 @@ RUN mvn clean package -DskipTests
 # RUNTIME PHASE
 # --------------------------------------------------------------------------------
 # Lighter and safer base image
-FROM eclipse-temurin:17-jre-focal
+# FROM eclipse-temurin:17-jre-focal (testing)
+FROM amazoncorretto:17-alpine
+
 
 #USER nonroot
 
