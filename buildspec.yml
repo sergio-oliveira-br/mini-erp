@@ -2,6 +2,10 @@ version: 0.2
 # Environment variables we inject via Terraform
 # 905418423035.dkr.ecr.eu-west-1.amazonaws.com/mini-erp
 
+cache:
+  paths:
+    - '/root/.m2/**/*'
+
 phases:
   # -----------------------------------------------------
   # 1. Install
@@ -44,12 +48,8 @@ phases:
   build:
     commands:
       - echo Running Maven clean install and executing all tests...
-      - mvn clean install
+      - mvn -T 1C clean install
       - echo Building the Docker image...
-
-      - echo "Verificando variáveis de ambiente..."
-      - echo "SPRING_DATASOURCE_USERNAME=$SPRING_DATASOURCE_USERNAME"
-      - echo "SPRING_DATASOURCE_PASSWORD=$SPRING_DATASOURCE_PASSWORD"
 
       #      - docker build -t $ECR_REPO_URI:latest -t $ECR_REPO_URI:$IMAGE_TAG .
       - docker build --build-arg SPRING_DATASOURCE_USERNAME=$SPRING_DATASOURCE_USERNAME --build-arg SPRING_DATASOURCE_PASSWORD=$SPRING_DATASOURCE_PASSWORD -t $ECR_REPO_URI:latest -t $ECR_REPO_URI:$IMAGE_TAG .
