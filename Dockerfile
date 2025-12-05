@@ -6,8 +6,13 @@ FROM maven:3.9.6-amazoncorretto-17 AS build
 # Defines the working directory within the container
 WORKDIR /app
 
-# Copies the build files from Maven
+# Copie the pom file
 COPY pom.xml .
+
+# Download dependencies
+RUN mvn -q dependency:go-offline
+
+# Copie the code
 COPY src /app/src
 
 # Compile the project and generate the JAR
