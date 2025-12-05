@@ -74,3 +74,4 @@ phases:
 artifacts:
   files:
     - imagedefinitions.json
+    - task-definition.json
