@@ -297,13 +297,10 @@ resource "aws_ecs_task_definition" "app" {
     {
       name      = "mini-erp",
       image     = "placeholder",
-      cpu       = 1024,
-      memory    = 2048,
       essential = true,
       portMappings = [
         {
           containerPort = 8080
-          hostPort      = 8080
           protocol      = "tcp"
         }
       ],
