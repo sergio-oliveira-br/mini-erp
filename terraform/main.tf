@@ -287,8 +287,8 @@ resource "aws_ecs_task_definition" "app" {
   family                   = "mini-erp-task"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
-  cpu                      = "256"
-  memory                   = "512"
+  cpu                      = "1024"
+  memory                   = "2048"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   task_role_arn            = "arn:aws:iam::905418423035:role/ecs-task-role-mini-erp"
 
@@ -297,8 +297,8 @@ resource "aws_ecs_task_definition" "app" {
     {
       name      = "mini-erp",
       image     = "placeholder",
-      cpu       = 256,
-      memory    = 512,
+      cpu       = 1024,
+      memory    = 2048,
       essential = true,
       portMappings = [
         {
