@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/inventory")
 @Validated
-public class InventoryController {
+public class InventoryController { 
 
     private final ItemService itemService;
 
